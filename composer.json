@@ -1,0 +1,14 @@
+{
+    "name": "mouri/api",
+    "description": "Simple php API",   
+    "type": "api",
+    "require": {
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mouri P",
+            "email": "mourims14@gmail.com"
+        }
+    ]
+}
