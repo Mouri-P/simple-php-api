@@ -17,11 +17,15 @@ class Employees
         $this->connection = $db;
     }
 
-    public function read()
-    {
-        $sql = "SELECT * FROM {$this->table} ORDER BY {$this->name}";
+    public function read($queries)
+    {        
+        $sql = "SELECT * FROM `{$this->table}`  WHERE `{$this->name}` LIKE :search ORDER BY `{$this->name}` LIMIT :begining, :ending";
 
         $statement = $this->connection->prepare($sql);
+        $statement->bindParam(':search', $queries['search']);
+        $statement->bindParam(':ending', $queries['perpage'], PDO::PARAM_INT);
+        $statement->bindParam(':begining', $queries['from'], PDO::PARAM_INT);
+
         $statement->execute();
         return $statement;
     }

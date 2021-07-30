@@ -32,10 +32,16 @@ switch ($method) {
 function get()
 {
     global $employees;
-    
-    $allEmployees = $employees->read();
+    $queries = array();
+    parse_str(array_key_exists('QUERY_STRING', $_SERVER) ? $_SERVER['QUERY_STRING'] : '', $queries);
 
-    $result = array('data' => $data = array());
+    $queries['perpage'] = array_key_exists('perpage', $queries) ? $queries['perpage'] : 15;
+    $queries['from'] = array_key_exists('page', $queries) ? $queries['page'] * $queries['perpage'] : 0;
+    $queries['search'] = array_key_exists('search', $queries) ? '%' . $queries['search'] . '%' : '%';
+
+    $allEmployees = $employees->read($queries);
+
+    $result = array('page' => $queries['from'] / $queries['perpage'], 'perpage' => $queries['perpage'], 'data' => $data = array());
 
     while ($row = $allEmployees->fetch(PDO::FETCH_OBJ)) {
         array_push($result['data'], $row);
@@ -89,4 +95,9 @@ function checkAndGetInput($data)
             'join_date' => property_exists($data, 'join_date') ? $data->join_date : null,
         );
     }
+}
+
+function notFound()
+{
+    echo json_encode(array('result' => 'Not found'));
 }
