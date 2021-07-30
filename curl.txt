@@ -1,7 +1,8 @@
-curl --location --request GET 'http://localhost:3000/api?search=m&page=2&perpage=2'
+curl GET 'http://localhost:3000/api'
 
-curl --location --request POST 'http://localhost:3000/api' \
---header 'Content-Type: application/json' \
+curl GET 'http://localhost:3000/api?search=m&page=2&perpage=2'
+
+curl  POST 'http://localhost:3000/api' --header 'Content-Type: application/json'
 --data-raw '{
     "name": "super man",
     "department": "heros",
@@ -9,8 +10,8 @@ curl --location --request POST 'http://localhost:3000/api' \
     "join_date": "2020-01-01"
 }'
 
-curl --location --request PUT 'http://localhost:3000/api' \
---header 'Content-Type: application/json' \
+curl PUT 'http://localhost:3000/api'
+--header 'Content-Type: application/json'
 --data-raw '{
     "id": 1,
     "name": "super duper man",
@@ -19,8 +20,8 @@ curl --location --request PUT 'http://localhost:3000/api' \
     "join_date": "2020-01-02"
 }'
 
-curl --location --request DELETE 'http://localhost:3000/api' \
---header 'Content-Type: application/json' \
+curl DELETE 'http://localhost:3000/api'
+--header 'Content-Type: application/json'
 --data-raw '{
     "id": 1
 }'
