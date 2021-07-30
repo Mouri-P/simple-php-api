@@ -2,26 +2,8 @@ curl GET 'http://localhost:3000/api'
 
 curl GET 'http://localhost:3000/api?search=m&page=2&perpage=2'
 
-curl  POST 'http://localhost:3000/api' --header 'Content-Type: application/json'
---data-raw '{
-    "name": "super man",
-    "department": "heros",
-    "roll": "saving the world",
-    "join_date": "2020-01-01"
-}'
+curl  POST 'http://localhost:3000/api' --header 'Content-Type: application/json' --data-raw '{"name": "super man", "department": "heros", "roll": "saving the world", "join_date": "2020-01-01"}'
 
-curl PUT 'http://localhost:3000/api'
---header 'Content-Type: application/json'
---data-raw '{
-    "id": 1,
-    "name": "super duper man",
-    "department": "super heros",
-    "roll": "saving the universe",
-    "join_date": "2020-01-02"
-}'
+curl PUT 'http://localhost:3000/api' --header 'Content-Type: application/json' --data-raw '{ "id": 1, "name": "super duper man", "department": "super heros", "roll": "saving the universe", "join_date": "2020-09-09"}'
 
-curl DELETE 'http://localhost:3000/api'
---header 'Content-Type: application/json'
---data-raw '{
-    "id": 1
-}'
+curl DELETE 'http://localhost:3000/api' --header 'Content-Type: application/json' --data-raw '{ "id": 1}'
